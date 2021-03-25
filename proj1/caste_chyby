@@ -1,0 +1,98 @@
+-10:nerozbalene
+-4:neprelozene make
+-6:neprelozene vobec
+
+-1:pretecenie sadzby overfull
+Jedna se o vazny prohresek, v pripade vetsiho preteceni vypada vysledek velmi neprofesionalne. Napomocne je pouziti parametru 'draft' pri psani a nasledne 'final' pri hotovem vysazeni jako parametr documentclass.
+
+
+-2:vyzualna nezhoda dokumentu
+-0.1:zla uprava
+Velmi vyrazny nesoulad mezi vzorem a vygenerovanym PDF. Malé variace ve vzhledu výsledného dokumentu mohou být způsobeny trochu jiným použitím správných značek. Tyto rozdíly oproti vzorovému dokumentu obvykle nevedly ke ztrátě bodů. 
+Je rozhodně chybou snažit se sazbu násilně upravovat například pomocí \hspace. Nekdy to vask muze byt nezbytnost. Nicmene, nic z tvrde sazby nebylo v dokumentu pouzito. Další odlišnosti mohou způsobovat různá prostředí pro tisk vícesloupcové sazby (twocolumn coby parametr třídy article, twocolumn jako samostatný balík, multicol - zde už je rozdíl podstatně větší).
+
+
+-1:format strany
+-1:rozmery strany
+Není nastaven parametr a4paper nebo při transformaci ps2pdf používáte letter a ne a4. Není použit balík geometry a rozměry textu jsou nastaveny ručně nebo vůbec. Standardní nastavení okrajů nepočítá s listem velikosti A4, takže se plýtvá místem. Ruční nastavení bez balíku geometry je sice možné, ale rozhodně to není tak přehledné.
+
+-0.5:font 
+Použity jiné fonty, než předepisuje zadání. Použití jiné rodiny fontů vede k typograficky zcela odlišnému výsledku.
+
+-0.5:lokalizacia
+V dokumentu není použit balík babel s parametrem czech. Bez toho nebude fungovat české dělení slov, správné odsazování prvních řádků v odstavcích a další věci, kterými se česká sazba liší od anglické. Ruční dělení slov stylem "důle- žitých" způsobí problémy v okamžiku, kdy do textu něco připíšete. Pokud náhodou nemá nějaké slovo ve slovníku, lze použít příkaz \hyphenation nebo příkaz \- přímo v neposlušném slově: "důle\-žitých". Podobně nešťastné je vkládání krátkých mezer (\,) v místech, kde chcete zalomení zabránit.
+
+-0.5:kodovanie fontu
+Nepoužíváte balík fontenc se správným parametrem (IL2 nebo T1, dle zadani). Balík umožní používat lokalizované fonty, u nichž bývají lépe spočítány znaky s diakritikou. Správné použití tohoto balíku umožňuje například české fulltextové vyhledávání ve výsledném PDF dokumentu. Bez jeho použití (nebo když není vybraný font k dispozici v lokalizované verzi) se znaky s diakritikou vysází na první pohled správně, ale v PDF dokumentu je pak napr. písmeno č vysázeno jako cˇ.
+
+-0.5:kodovanie suboru
+Nepoužíváte balík inputenc nebo je jeho parametrem chybné kódování. To způsobuje nepřenositelnost dokumentu.
+\usepackage[latin2]{inputenc} % dokument v iso8859-2
+\usepackage[cp1250]{inputenc} % dokument ve windows-1250
+\usepackage[utf8x]{inputenc} % dokument v UTF-8
+
+-0:newcommand
+Chybně zapsaný parametr \newcommand. Prvním parametrem příkazu \newcommand je název nového příkazu. Tento název musí být ve složených závorkách, jinak s tím jsou v některých distribucích LaTeXu potíže. Hvezdicka \newcommand* se pise, kdyz prikaz nemuze obsahovat \par.
+
+-1:maketitle
+Nadpis článku je vysázen ručně. Správně se to dělá použitím makra \maketitle.
+
+-1:neovlnkovane
+-1:prevlnkovane
+Chybejici, spatne uzite znaky ~. Nepouzitim programu vlna se vystavujete nebezpeci, ze vas text se muze vysazet chybne (napr. po zmene textu dokumentu). Jedna se o hrubou chybu. Pokud jsou vlnky za všemi, i vícepísmennými, předložkami a spojkami, zvyšuje se pravděpodobnost, že si latex nebude vědět rady se zalomením řádku a začne sázet "za roh" odstavce, do prostoru okraje stránky. Vůbec (většinou) nepatří do matematických prostředí nebo do prostředí verbatim, kde hrozí že se nevysázejí jako mezera.
+Neztrhavala jsem body pokud jste meli vlnku jen tam, kde to bylo nutne. 
+Pouziti:
+* neslabicne predlozky (z, v, ...), predlozky slabicne (pri, do) psat bez vlnky
+* pri tisku nad 25 liter/radek za spojkou a
+* pri tisku cislic mezi cislici a nasledujici slovo
+
+-0:nepouzita diakritika
+Pokud háčky a čárky sázíte takto: h'{a}\v{c}ky a \v{c}'{a}rky, pak je zdrojový text nečitelný a nedá se s ním příliš pracovat. Navíc bývá takto vysázená diakritika odlišná od diakritiky v českých fontech při použití balíku czech (anglický latex neumí najít optickou osu písmenek, místo toho používá osu geometrickou, takže háčky jsou pak mírně posunuty). Pokud tento způsob sazby způsobuje příliš chytrý editor, snažte se tuto vlastnost vypnout.
+
+-0.5:sadzba nadpisov
+Cislovani sekci sverit LaTeXu, rucni zadavani natvrdo neni vhodne. Degradujete tak LaTeX na uroven poznamkoveho bloku. Udrzovani dokumentu pri zmenach do jeho struktury je pak vyrazne narocnejsi.
+
+-0/-0.5:pevne umiestnenie
+Pouziti nasilnych mezer (\quad, \hspace, \vspace a pod.), pevnych vertikalnich mezer \\[velikost] a \kern velikost a nebo jste menili mezery stylu pomoci \baselinestretch. Místo nich se používají relativní nebo pružné mezery (\ , \,, \stretch, \vfill apod.). Tvrdá sazba se rozpadne při změně textu nebo rozměrů strany. Casto pouzity misto quote a \maketitle, ovsem u nekoho se vyskytovali i v textu.
+
+-0:delenie odstavcov
+-0:rucne odsadenie indent
+Používání příkazů \par, \indent a \noindent je v běžných dokumentech naprosto zbytečné a v některých případech to dokonce může rozhodit formátování dokumentu. Stejného (lepšího) efektu dosáhnete, když mezi odstavci necháte prázdný řádek. Tyto příkazy se používají při tvorbě maker a nových tříd. Odsazování odstavců je lepší nechat na LaTeXu.
+
+-0:velkost odsadenia
+Velikost odsazení prvního řádku odstavce je dána použitým stylem, nepoužívá se ruční nastavení pomocí \parindent=velikost. Zásahy do tohoto nastavení dělejte, jen když víte, proč to děláte. Standardní styly jsou navrženy typografickými odborníky a obvykle není důvod je nějak měnit.
+
+-0.5:nasilne odriadkovanie
+Násilně vynucené odřádkování i na konci odstavce (\\\\, \linebreak nebo \newline) má obvykle za následek, že se konec věty přilepí k pravému okraji. V běžném textu je to typografická chyba. Uvnitř \title a \author to chyba není.
+
+-0:zlozita sadzba prikazov bez verb
+Doporucuji pouzivat \verb misto {\tt \textbackslash textit\{text\}}. 
+
+-0:zvyraznenie bez emph
+Dávejte přednost značce \emph před značkou \textit. Značky \emph lze smysluplně vnořovat do sebe.
+
+-0.5:rucne odrazky
+Ručně sázené odrážky v seznamu, například pomocí \bullet. To je zbytečné, seznam (prostředí itemize) si vysází správné odrážky sám.
+
+-0.1:anglicke uvozdovky
+-0.1:programatorske uvozdovky
+Nevhodně nebo chybně sázené uvozovky. Lepsi je pouzit znaky z unicode, nebo pro ``anglicke uvozovky'' a "programatorske uvozovky". Ruční používání příkazů jako \textquotedblleft a \textquotedblright nebo \textquotedbl (s prislusnym kodovanim T1) je zase příliš pracné. Tyto příkazy obvykle slouží pro vytváření maker.
+
+-0.1:ceske uvozdovky
+Pouziti \uv, nebo preddefinovat napr. pomoci \newcommand{\uvcs}[1]{\quotedblbase #1\textquotedblleft}
+
+-0.2:pomlcky
+-0.2:spojonik ako pomlcka
+Spojovniky - jsou vysazeny jako pomlcky --. A opacne, pomlčky jsou sázeny naivním způsobem jako -, namísto --. Kolem dlouhé pomlčky ve větě se maji sázet zúžené mezery (spravne \,--\,). Jednoduchá pomlčka použitá uprostřed věty je typografickou chybou.
+
+-0.2:externe odkazy
+Externí dkazy na web nebo email nejsou dělány pomocí \url z balíku url nebo \href z balíku hyperref (možnost nastavení barev) nebo podobe. Odpadá nutnost kopírování adresy do prohlížeče nebo emailového klienta. Formatovani je jednotne.
+
+-0.2:LaTeX
+Pro sazbu nazvu LaTeX se pouziva prikaz \LaTeX.
+
+-0.5:poznamky pod ciarou
+Chybne vysazeny prikaz \footnote. Používejte raději \footnote než \footnotemark a \footnotetext. Tato dvě makra jsou určena spíše pro tvorbu složitějších maker. V delším dokumentu se vám mohou takto sázené poznámky pod čarou snadno zpřeházet. Úplně zcestné je sázet odkazy na poznámky pod čarou pomocí matematického módu jako $^1$.
+
+-0.2:citacia
+Použití různých způsobů odsazení odstavce "Čím více druhů..." namísto použití prostředí quotation. Obvykle je tato chyba spojena s ručním pozicováním pomocí \hskip, \quad, \qquad, nebo použitím quote + \indent.

@@ -1,0 +1,92 @@
+
+1 Úvodnı́ strana
+Název práce umı́stěte do zlatého řezu a nezapomeňte uvést dnešnı́ datum a vaše jméno a přı́jmenı́.
+
+2 Tabulky 
+Pro sázenı́ tabulek můžeme použı́t bud’ prostředı́ tabbing nebo prostředı́ tabular.
+
+2.1 Prostředı́ tabbing
+Při použitı́ tabbing vypadá tabulka následovně:
+Ovoce            Cena         Množství
+Jablka           25,90         3 kg
+Hrušky           27,40         2,5 kg
+Vodnı́ melouny    35,-          1 kus
+
+Toto prostředı́ se dá také použı́t pro sázenı́ algoritmů, ovšem vhodnějšı́ je použı́t prostředı́ algorithm nebo algorithm2e (viz sekce 3). 
+
+2.2 Prostředı́ tabular
+Dalšı́ možnostı́, jak vytvořit tabulku, je použı́t prostředı́ tabular. Tabulky pak budou vypadat takto 1 :
+            Cena 
+Měna    nákup   prodej
+EUR     25,227  26,943 
+GBP     29,368  31,492
+USD     21,260  22,661 T
+abulka 1: Tabulka kurzů k dnešnı́mu dni
+
+A ¬A
+P  N 
+O  O 
+X  X 
+N  P
+
+            B
+A ∧ B    P  O  X  N  
+    P    P  O  X  N
+A   O    O  O  N  N
+    X    X  N  X  N
+    N    N  N  N  N
+
+            B
+A ∨ B    P  O  X  N  
+    P    P  P  P  P
+A   O    P  O  P  O
+    X    P  P  X  X
+    N    P  O  X  N
+    
+            B
+A → B    P  O  X  N  
+    P    P  O  X  N
+A   O    P  O  P  O
+    X    P  P  X  X
+    N    P  P  P  P
+    
+Tabulka 2: Protože Kleeneho trojhodnotová logika už je zastaralá“, uvádı́me si zde přı́klad čtyřhodnotové ” logiky 
+
+1 Kdyby byl problem s cline, zkuste se podı́vat  třeba sem: http://www.abclinuxu.cz/tex/poradna/show/325037. 
+
+3 Algoritmy 
+Pokud budeme chtı́t vysázet algoritmus, můžeme použı́t prostředı́ algorithm 2 nebo algorithm2e 3 . Přı́klad použitı́ prostředı́ algorithm2e viz Algoritmus 1.
+Algoritmus 1: FAST SLAM 
+Input: (X t−1 , u t , z t ) 
+Output: X t   
+1: X t = X t = 0 
+2: for k = 1 to M do
+3:      x t[k] = sample motion model(u t , x t−1 [k] ) 
+4:      ω t[k] = measurement model(z t , x t [k] , m t−1 )
+5:      m t[k] = updated occupancy grid(z t , x t [k] , m t−1 [k] )
+6:      X t = X t + <Xx x [m] , ω t [m] >
+7: end for
+8: for k = 1 to M do
+9:      draw i with probability ≈ ω t [i] 
+10:     add <Xx x [k] , m t [k]> to X t
+11: end for
+12: return X t 
+
+4 Obrázky
+Do našich článků můžeme samozřejmě vkládat obrázky. Pokud je obrázkem fotografie, můžeme klidně použı́t bitmapový soubor. Pokud by to ale mělo být nějaké schéma nebo něco podobného, je dobrým zvykem takovýto obrázek vytvořit vektorově. 
+
+Obrázek 1: Malý Etiopánek a jeho bratřı́ček
+
+2 Pro nápovědu, jak zacházet s prostředı́m algorithm, můžeme zkusit tuhle stránku: http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithms/algorithms.pdf. 
+3 Pro algorithm2e zase tuhle: http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf. 
+
+Rozdı́l mezi vektorovým . . .
+
+Obrázek 2: Vektorový obrázek 
+
+. . . a bitmapovým obrázkem 
+
+Obrázek 3: Bitmapový obrázek se projevı́ například při zvětšenı́.
+
+Odkazy (nejen ty) na obrázky 1, 2 a 3, na tabulky 1 a 2 a také na algoritmus 1 jsou udělány pomocı́ křı́žových odkazů. Pak je ovšem potřeba zdrojový soubor přeložit dvakrát. 
+Vektorové obrázky lze vytvořit i přı́mo v L A TEXu, napřı́klad pomocı́ prostředı́ picture
