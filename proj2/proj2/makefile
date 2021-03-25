@@ -1,10 +1,12 @@
-NAME=proj1
+NAME=proj2
 LOGIN=xskalo01
 
 ALLFILES=$(NAME).tex makefile
 
 ALL: $(NAME).tex
 	latex $(NAME).tex
+	latex $(NAME).tex
+	pdflatex $(NAME).tex
 	pdflatex $(NAME).tex
 
 zip:
