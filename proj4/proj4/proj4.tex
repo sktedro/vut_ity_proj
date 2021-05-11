@@ -1,0 +1,110 @@
+%! Author = Patrik Skaloš
+%! login = xskalo01
+
+% Preamble
+\documentclass[a4paper, 11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+\usepackage{times}
+\usepackage[left = 2cm, top = 3cm, total={17cm, 24cm}]{geometry}
+\usepackage{hyperref}
+\usepackage{url}
+\urlstyle{same}
+
+% Document
+\begin{document}
+  \begin{titlepage}
+    \begin{center}
+      \Huge
+      \textsc{Vysoké učení technické v~Brně} \\
+      \huge\textsc{Fakulta informačních technologií} \\
+      \vspace{\stretch{0.382}}
+      \LARGE
+      Typografia a publikovanie\,--\,4. projekt\\
+      \Huge
+      Citácie\\
+      \vspace{\stretch{0.618}}
+      {\Large \today\hfill
+      Patrik Skaloš}
+    \end{center}
+  \end{titlepage}
+
+
+  \section{Úvod}
+  Umelá inteligencia (\emph{angl. artificial intelligence}, ďalej \emph{AI}) 
+  je dnes na každom rohu a~väčšina z~nás je na nej závislá, pričom o~tom
+  ani nemusíme vedieť, keďže je skrytá za vrstvou nazývanou 
+  \emph{uživateľské rozhranie}. \\
+  \emph{Najčastejšie sa s~ňou človek stretne pri 
+  cielených reklamách, vyhľadávaní na internete, na sociálnych sieťach a~
+  podobne.} \cite{Markowitz:2020:TakeALookAround}
+
+  \emph{S~názvom \uv{artificial intelligence} prišiel v~roku 1955 John 
+  McCarthy, keď tak nazval letnú školu, ktorú organizoval. Práve od toho 
+  momentu sa začal pojem AI používať bežne.}
+  \cite{Wooldridge:2021:ABriefHistoryOfArtificialIntelligence} 
+
+  \section{Neurónové siete a ich optimalizácia}
+  AI je založená na neurónových sieťach. Tie sú, ako to Daniel Shiffman 
+  vysvetľuje vo svojej knihe, \emph{výpočtové modely založené na mozgu určené 
+  na riešenie istých problémov}. 
+  \cite{Shiffman:2012:TheNatureOfCode}
+
+  \subsection{Problémy neurónových sietí}
+  \emph{Neurónové siete majú svoje nevýhody, ako napríklad tzv. problém vedra 
+  bez dna}, ktorý opisuje Erik Larson vo svojej knihe The Myth of Artificial 
+  Intelligence \cite{Larson:2021:TheMythOfArtificialIntelligence}. 
+
+  Tento problém hovorí o~tom, že \emph{(zatiaľ) nepoznáme spôsob, ako vyriešiť 
+  jednoduchý problém bez toho, aby sme spracovali obrovské množstvo 
+  bezvýznamných informácií (na rozdiel od ľudského mozgu, ktorý dokáže 
+  efektívne vyberať len informácie, ktoré predpokladá, že sú dôležité)}. 
+
+  Je preto zvyčajne nevyhnutné filtrovať informácie, ktoré umelej inteligencii
+  poskytneme. Na zvyšovanie efektivity však poznáme aj množstvo ďalších metód. 
+  Napríklad metóda \emph{dropout} hovorí o~\emph{náhodnom mazaní neurónov 
+  počas evolúcie, ktoré dokáže zvýšiť výkon pri učení pod dohľadom}. 
+  \cite{Srivastava:2014:Dropout} 
+  Metóda z~názvom \emph{normalizácia várok údajne dokáže výrazne zvýšiť 
+  rýchlosť učenia, zjednodušiť inicializáciu a~niekedy dokonca nahradiť 
+  funkciu metódy dropout}. \cite{Ioffe:2015:BatchNormalization}
+
+  \subsection{Optimalizácia neurónových sietí}
+  Optimalizovať algoritmy učenia je dôležitejšie, ako sa na prvý pohľad môže 
+  zdať. Neurónová sieť nikdy nebude perfektná, a~každý kúsok optimalizácie
+  môže znamenať rýchlejšie dosiahnutie lepšieho výsledku. Na lepších výsledkoch
+  záleží najmä v~odvetviach, kde ide o~život. Efektívnejšie učenie má však 
+  ďalšie výhody. Napríklad na vývin autonómneho vozidla potrebujeme obrovské 
+  množstvo dát z~ciest. Tie sú však obmedzené a~preto sa predpokladá, že 
+  vyvinutý systém nie je ani zďaleka dokonalý, \emph{čo má za následok potrebu 
+  zdĺhavého testovania, a~práve to vývoj značne spomaľuje}.
+  \cite{Tinakova:2020:AutonomneVozidla}
+  Ak by sme však dokázali dostatočne zefektívniť učenie nad rovnakým objemom 
+  dát, na cestách by sme už dnes videli mnoho autonómnych áut.
+
+  \section{Príklad použitia - obchodovanie na trhu}
+  Osobne ma naposledy zaujal koncept predpovede trhu pomocou umelej 
+  inteligencie. \emph{Je jasné, že každý trh je ovplyvňovaný neuveriteľným 
+  množstvom faktorov a~o~to náročnejšia je analýza väčšieho množstva 
+  trhov.}\cite{WU:2017:PerformanceComparison} 
+
+  To je len jeden z~mnohých problémov pri implementácii systému na predpoveď 
+  ceny trhu. Kvôli týmto problémom nemôže byť žiaden mechanický systém 
+  predpovede dlhodobo ziskový pri obchodovaní na trhoch. 
+  Mnohí sa však pokúšajú týmto problémom čeliť pomocou neurónových sietí.
+
+  Petr Volf vo svojej diplomovej práci popisuje, ako dokázal predpovedať trh
+  so správnosťou až $95.45\%$.
+  \cite{VOLF:2015:VyuzitiNaKomoditnich}
+
+  V~svojej diplomovej práci Martin Kuna popisuje správnosť predpovede trhu
+  $74\%$, zaujímavejšie je však tvrdenie, že z~$1.7\times10^{13}$ 
+  možných kombinácii dokázala jeho aplikácia vybrať \emph{optimálne portfólio}.
+  \cite{Kuna:2010:VyuzitiNaKapitalovych}
+
+  \bibliography{proj4}
+  \bibliographystyle{czechiso}
+
+\end{document}
